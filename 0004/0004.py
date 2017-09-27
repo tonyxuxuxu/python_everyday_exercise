@@ -15,7 +15,7 @@ def findword(data):
     return dict
 
 if __name__ == "__main__":
-    with open('./sample','r') as file:
+    with open('./python.txt','r') as file:
         data = file.read()
         wordlist = findword(data)
         print(wordlist)

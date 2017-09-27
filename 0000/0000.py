@@ -6,7 +6,7 @@
 from PIL import Image, ImageDraw, ImageFont
 
 text = '555'
-img = Image.open('0000.jpg')
+img = Image.open('0005.jpg')
 img_w, img_h = img.size
 draw = ImageDraw.Draw(img)
 font = ImageFont.truetype("msyh.ttf", 10)
