@@ -35,8 +35,9 @@ def fileword(path):
             with open(file) as txtfile:
                 data = txtfile.read()
                 wordlist = findword(data)
-                print(wordlist)
-#TODO get max value in dictionary in python 3
+                maxcount = max(wordlist)
+                print(key for key in wordlist.keys() if wordlist[key]==maxcount)
+
 
 if __name__ == "__main__":
     fileword(".")
