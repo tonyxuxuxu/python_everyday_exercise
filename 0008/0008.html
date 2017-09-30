@@ -1,0 +1,2346 @@
+
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Beautiful Soup 4 Python</title>
+        <link rel="profile" href="http://gmpg.org/xfn/11" />
+        <link rel="canonical" href="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" />    
+        <meta property="og:locale" content="en_US"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Beautiful Soup 4 Python"/>
+        <meta property="og:url" content="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python"/>
+        <meta property="og:site_name" content="Python For Beginners"/>        
+        <link rel="alternate" type="application/rss+xml" title="Python For Beginners &raquo; Feed" href="http://www.pythonforbeginners.com/feed/" />       
+        <meta name="description" lang="en-US" content=" Overview This article is an introduction to BeautifulSoup 4 in Python. If you want to know more I recommend you ... " />
+        <meta name="keywords" content="learn python, python 101, what is python, what is django, python tutorial" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="http://s.pythonforbeginners.com/static/img/favicon.ico" type="image/x-icon" />
+        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://s.pythonforbeginners.com/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://s.pythonforbeginners.com/static/css/bootstrap-theme-min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeDefault.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="http://s.pythonforbeginners.com/static/css/p4b.css" >
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+        
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64708426-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!--BEGIN FIRSTIMPRESSION TAG -->
+<script data-cfasync='false' type='text/javascript'>
+	window.apd_options = { 'websiteId': 5731, 'runFromFrame': false };
+	(function() {
+		var w = window.apd_options.runFromFrame ? window.top : window;
+		if(window.apd_options.runFromFrame && w!=window.parent) w=window.parent;
+		if (w.location.hash.indexOf('apdAdmin') != -1){if(typeof(Storage) !== 'undefined') {w.localStorage.apdAdmin = 1;}}
+		var adminMode = ((typeof(Storage) == 'undefined') || (w.localStorage.apdAdmin == 1));
+		w.apd_options=window.apd_options;
+		var apd = w.document.createElement('script'); apd.type = 'text/javascript'; apd.async = true;
+		apd.src = '//' + (adminMode ? 'cdn' : 'ecdn') + '.firstimpression.io/' + (adminMode ? 'apd.js?id=' + window.apd_options.websiteId : 'apd_client.js') ;
+		var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
+	})();</script>
+<!-- END FIRSTIMPRESSION TAG -->
+</head>
+    <body>
+        <div id="fb-root"></div>
+
+        <div id="wrapper">
+            
+<div class="container navigation">  <div class="navbar navbar-inverse2">
+<script>
+function reloadMe() {
+	window.location.reload();
+}
+function getInterval(){
+	var lowerBound = 420;
+	var upperBound = 840;
+	
+	var randNum = Math.floor((upperBound-lowerBound+1)*Math.random()+lowerBound) * 1000;
+	return randNum;
+}
+var interval = getInterval();
+var srcInterval = setInterval("reloadMe()",interval);
+</script>
+<div style="text-align: center;padding-top:5px;height: 100px;"><script type='text/javascript'>
+<!--//<![CDATA[
+   document.MAX_ct0 ='';
+   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("zoneid=372632");document.write("&amp;nodis=1");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+   }
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   
+   document.write ("'></scr"+"ipt>");
+//]]>--></script></div>
+     <div class="navbar-header">
+	     
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </button>        
+        <a class="navbar-brand" href="/" title="pythonforbeginners.com">
+          <img src="http://s.pythonforbeginners.com/static/img/pfb_logo.png" alt="pythonforbeginners.com">
+        </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          
+          <li><a href="/" title="Home">Home</a></li>
+          <li><a href="/learn-python/" title="Learn Python">Learn Python</a></li>
+          <li><a href="/basics/" title="Basics">Basics</a></li>
+          <li><a href="/lists/" title="lists">Lists</a></li>
+          <li><a href="/dictionary/" title="dictionary">Dictionary</a></li>
+          <li><a href="/code-snippets-source-code/" title="code snippets">Code Snippets</a></li>
+          <li><a href="/modules-in-python/" title="modules">Modules</a></li>
+         </ul>          
+      </div>
+  </div>
+</div>
+</div> 
+</div>
+<style>
+.container.content {
+	margin-top: 0px;
+	border:2px solid #ccc;
+	border-radius: 5px; 
+}
+</style>
+
+            
+
+
+
+
+<script type="text/javascript">
+
+	var disqus_shortname = 'pythonbeginners';
+	var disqus_identifier = "4072 http://www.pythonforbeginners.com/?p=4072";
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function () {
+		var s = document.createElement('script'); s.async = true;
+		s.type = 'text/javascript';
+		s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	}());
+</script>
+
+   
+    <div class="container content">
+<div style="text-align: center;margin: 0 auto;width: 970px;">
+</div>
+
+        <div class="col-md-7 col-lg-8">
+<div class="breadcrumb"><a href="/">Home</a> >> Beautiful Soup 4 Python</div>
+
+
+            <div class="post-header">
+                Mar. 09, 2016
+                <ul class="nav nav-pills">
+                
+                    <li><a href="/beautifulsoup/" title="BeautifulSoup"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;BeautifulSoup</a></li>
+                
+                    <li><a href="/python-on-the-web/" title="Web &amp; Internet"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Web &amp; Internet</a></li>
+                
+                </ul>
+            </div>
+            <h1>Beautiful Soup 4 Python</h1>
+          
+<div align="left">
+
+</div>
+
+            <div class="post-bodycopy cf">
+                <h2>Overview</h2>
+<pre>
+This article is an introduction to BeautifulSoup 4 in Python.
+
+If you want to know more I recommend you to read the official documentation
+found <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/" title="b4soup_doc" target="_blank">here</a>.
+</pre>
+
+<h2>What is Beautiful Soup?</h2>
+<pre>
+Beautiful Soup is a Python library for pulling data out of HTML and XML files. 
+</pre>
+
+<h2>BeautifulSoup 3 or 4?</h2>
+<pre>
+Beautiful Soup 3 has been replaced by Beautiful Soup 4.
+
+Beautiful Soup 3 only works on Python 2.x, but Beautiful Soup 4 also works on
+Python 3.x. 
+
+Beautiful Soup 4 is faster, has more features, and works with third-party parsers
+like lxml and html5lib. 
+
+You should use Beautiful Soup 4 for all new projects.
+</pre>
+
+<h2>Installing Beautiful Soup</h2>
+<pre>
+If you run Debian or Ubuntu, you can install Beautiful Soup with the system
+package manager
+</pre>
+<pre class="prettyprint">
+apt-get install python-bs4
+</pre>
+
+<pre>
+Beautiful Soup 4 is published through PyPi, so if you can’t install it with the
+system packager, you can install it with easy_install or pip. 
+
+The package name is beautifulsoup4, and the same package works on Python 2 and
+Python 3.
+</pre>
+
+<pre class="prettyprint">
+easy_install beautifulsoup4
+
+pip install beautifulsoup4
+</pre>
+
+<pre>
+If you don’t have easy_install or pip installed, you can <a href="http://www.crummy.com/software/BeautifulSoup/bs4/download/4.0/" title="crummy_bs4" target="_blank">download</a> the Beautiful
+Soup 4 source tarball and install it with setup.py.
+
+python setup.py install
+</pre>
+
+<h2>BeautifulSoup Usage</h2>
+<pre>
+Right after the installation you can start using BeautifulSoup. 
+
+At the beginning of your Python script, import the library
+
+Now you have to pass something to BeautifulSoup to create a soup object. 
+
+That could be a document or an URL. 
+
+BeautifulSoup does not fetch the web page for you, you have to do that yourself. 
+
+That's why I use urllib2 in combination with the BeautifulSoup library.
+</pre>
+
+<h2>Filtering</h2>
+<pre>
+There are some different filters you can use with the search API. 
+
+Below I will show you some examples on how you can pass those filters into
+methods such as find_all 
+
+You can use these filters based on a tag’s name, on its attributes, on the text
+of a string, or on some combination of these.
+</pre>
+
+<h5>A string</h5>
+<pre>
+The simplest filter is a string. 
+
+Pass a string to a search method and Beautiful Soup will perform a match against
+that exact string. 
+
+This code finds all the 'b' tags in the document (you can replace b with any
+tag you want to find)
+</pre>
+
+<pre class="prettyprint">
+soup.find_all('b')
+</pre>
+
+<pre>
+If you pass in a byte string, Beautiful Soup will assume the string is encoded
+as UTF-8. 
+
+You can avoid this by passing in a Unicode string instead.
+</pre>
+
+<h5>A regular expression</h5>
+<pre>
+If you pass in a regular expression object, Beautiful Soup will filter against
+that regular expression using its match() method. 
+
+This code finds all the tags whose names start with the letter "b",
+in this case, the 'body' tag and the 'b' tag:
+</pre>
+
+<pre class="prettyprint">
+import re
+for tag in soup.find_all(re.compile("^b")):
+    print(tag.name)</strong>
+</pre>
+
+<pre>
+This code finds all the tags whose names contain the letter "t":
+</pre>
+
+<pre class="prettyprint">
+for tag in soup.find_all(re.compile("t")):
+    print(tag.name)
+</pre>
+
+<h5>A list</h5>
+<pre>
+If you pass in a list, Beautiful Soup will allow a string match against any
+item in that list. 
+
+This code finds all the 'a' tags and all the 'b' tags
+</pre>
+
+<pre class="prettyprint">
+print soup.find_all(["a", "b"])
+</pre>
+
+<h5>True</h5>
+<pre>
+The value True matches everything it can. 
+
+This code finds all the tags in the document, but none of the text strings:
+</pre>
+
+<pre class="prettyprint">
+for tag in soup.find_all(True):
+    print(tag.name)
+</pre>
+
+<h4>A function</h4>
+<pre>
+If none of the other matches work for you, define a function that takes an
+element as its only argument. 
+
+Please see the official documentation if you want to do that. 
+</pre>
+
+<h2>BeautifulSoup Object</h2>
+<pre>
+As an example, we'll use the very website you currently are on 
+(http://www.pythonforbeginners.com)
+
+To parse the data from the content, we simply create a BeautifulSoup object for it
+
+That will create a soup object of the content of the url we passed in. 
+
+From this point, we can now use the Beautiful Soup methods on that soup object.
+
+We can use the prettify method to turn a BS parse tree into a nicely formatted
+Unicode string
+</pre>
+
+<h5>The Find_all method</h5>
+<pre>
+The find_all method is one of the most common methods in BeautifulSoup. 
+
+It looks through a tag’s descendants and retrieves all descendants that match
+your filters. 
+</pre>
+
+<pre class="prettyprint">
+soup.find_all("title")
+
+soup.find_all("p", "title")
+
+soup.find_all("a")
+
+soup.find_all(id="link2")
+</pre>
+
+<pre>Let's see some examples on how to use BS 4</pre>
+
+<pre class="prettyprint">
+from bs4 import BeautifulSoup
+import urllib2
+
+url = "http://www.pythonforbeginners.com"
+
+content = urllib2.urlopen(url).read()
+
+soup = BeautifulSoup(content)
+
+print soup.prettify()
+
+print title
+>> 'title'? Python For Beginners</title>
+
+print soup.title.string
+>> ? Python For Beginners
+
+print soup.p
+ <p id="tagline"></p>
+
+print soup.a
+<a href="http://www.pythonforbeginners.com">Python For Beginners</a>
+</pre>
+
+<h2>Navigating the Parse Tree</h2>
+<pre>
+If you want to know how to navigate the tree please see the official <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree" title="navigation_bs4" target="_blank">documentation</a>
+
+There you can read about the following things:
+
+<strong>Going down</strong>
+        Navigating using tag names
+        .contents and .children
+        .descendants
+        .string
+        .strings and stripped_strings
+
+<strong>Going up</strong>
+        .parent
+        .parents
+
+<strong>Going sideways</strong>
+        .next_sibling and .previous_sibling
+        .next_siblings and .previous_siblings
+
+<strong>Going back and forth</strong>
+        .next_element and .previous_element
+        .next_elements and .previous_elements
+</pre>
+
+<h2>Extracting all the URLs found within a page 'a' tags</h2>
+<pre>
+One common task is extracting all the URLs found within a page’s 'a' tags
+
+Using the find_all method, gives us a whole list of elements with the tag "a". 
+</pre>
+
+<pre class="prettyprint">
+for link in soup.find_all('a'):
+    print(link.get('href'))
+</pre>
+
+<pre>
+Output:
+</pre>
+
+<pre>
+..http://www.pythonforbeginners.com
+..http://www.pythonforbeginners.com/python-overview-start-here/
+..http://www.pythonforbeginners.com/dictionary/
+..http://www.pythonforbeginners.com/python-functions-cheat-sheet/
+..http://www.pythonforbeginners.com/lists/python-lists-cheat-sheet/
+..http://www.pythonforbeginners.com/loops/
+..http://www.pythonforbeginners.com/python-modules/
+..http://www.pythonforbeginners.com/strings/
+..http://www.pythonforbeginners.com/sitemap/
+...
+...
+</pre>
+
+<h2>Extracting all the text from a page</h2>
+<pre>
+Another common task is extracting all the text from a page:
+</pre>
+
+<pre class="prettyprint">
+print(soup.get_text())
+</pre>
+
+<pre>
+Output:
+</pre>
+
+<pre>
+Python For Beginners
+Python Basics
+Dictionary
+Functions
+Lists
+Loops
+Modules
+Strings
+Sitemap
+...
+...
+</pre>
+
+<h2>Get all links from Reddit</h2>
+<pre>
+As a last example, let's grab all the links from Reddit
+</pre>
+
+<pre class="prettyprint">
+
+from bs4 import BeautifulSoup
+import urllib2
+
+redditFile = urllib2.urlopen("http://www.reddit.com")
+redditHtml = redditFile.read()
+redditFile.close()
+
+soup = BeautifulSoup(redditHtml)
+redditAll = soup.find_all("a")
+for links in soup.find_all('a'):
+    print (links.get('href'))
+</pre>
+
+<pre>Output:
+</pre>
+
+<pre>
+#content
+..http://www.reddit.com/r/AdviceAnimals/
+..http://www.reddit.com/r/announcements/
+..http://www.reddit.com/r/AskReddit/
+..http://www.reddit.com/r/atheism/
+..http://www.reddit.com/r/aww/
+..http://www.reddit.com/r/bestof/
+..http://www.reddit.com/r/blog/
+..http://www.reddit.com/r/funny/
+..http://www.reddit.com/r/gaming/
+..http://www.reddit.com/r/IAmA/
+..http://www.reddit.com/r/movies/
+..http://www.reddit.com/r/Music/
+..http://www.reddit.com/r/pics/
+..http://www.reddit.com/r/politics/
+...
+</pre>
+
+<pre>
+For more information, please see the <a href="https://beautiful-soup-4.readthedocs.org/en/latest/" title="bs4" target="_blank">official</a> documentation.
+</pre>
+             
+<section class="a">
+<h3>Recommended Python Training – <a href="https://www.datacamp.com/courses/tech:python?tap_a=5644-dce66f&tap_s=75426-9cf8ad">DataCamp</a></h3><p>
+For <a href="https://www.datacamp.com/courses/tech:python?tap_a=5644-dce66f&tap_s=75426-9cf8ad">Python training</a>, our top recommendation is DataCamp.
+</p><p>
+<a href="https://www.datacamp.com/courses/tech:python?tap_a=5644-dce66f&tap_s=75426-9cf8ad">Datacamp</a> provides online interactive courses that combine interactive coding challenges with videos from top instructors in the field.
+</p><p>
+Datacamp has beginner to advanced Python training that programmers of all levels benefit from.
+</p>
+</section>
+<p>&nbsp;</p>
+<div align="center">
+	<!-- BEGIN TAG - DO NOT MODIFY -->
+<script type="text/javascript">
+/*<![CDATA[*/
+supp_key = "a48c928d31af79d0fde04fccbf45c5f3";
+supp_channel = "";
+supp_code_format = "ads";
+supp_click = "";
+supp_custom_params = {};
+supp_width = "640";
+supp_height = "480";
+
+/*]]>*/
+</script>
+<script type='text/javascript' src='//www.advertsby.com/js/show_ads_supp.js?pubId=80478'></script>
+<!-- END TAG -->
+</div>
+                <div>
+                    <a href="https://twitter.com/share?url=http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" class="twitter-share-button" data-via="pythonbeginners" data-size="large">Tweet</a>
+                    <div class="g-plusone" data-href="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" data-size="standard" data-annotation="bubble"></div>
+                    <div class="fb-like" data-href="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>                        
+                </div><br/><br/>
+
+                Read more about:
+                <ul class="nav nav-pills">
+                
+                <li><a href="/beautifulsoup/" title="BeautifulSoup"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;BeautifulSoup</a></li>
+                
+                <li><a href="/python-on-the-web/" title="Web &amp; Internet"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Web &amp; Internet</a></li>
+                
+                </ul>
+            </div>
+        <!--Carambola Script --> 
+<img height='0' width='0' alt='' src='//pixel.watch/6ot8' /> 
+<script data-cfasync="false" class="carambola_InContent" type="text/javascript" cbola_wid="0">  
+(function (i,d,s,o,m,r,c,l,w,q,y,h,g) {  
+var e=d.getElementById(r);if(e===null){  
+var t = d.createElement(o); t.src = g; t.id = r; t.setAttribute(m, s);t.async = 1;var n=d.getElementsByTagName(o)[0];n.parentNode.insertBefore(t, n); 
+var dt=new Date().getTime();  
+try{i[l][w+y](h,i[l][q+y](h)+'&'+dt);}catch(er){i[h]=dt;}  
+} else if(typeof i[c]!=='undefined'){i[c]++}  
+else{i[c]=1;}  
+})(window, document, 'InContent', 'script', 'mediaType', 'carambola_proxy','Cbola_IC','localStorage','set','get','Item','cbolaDt','//route.carambo.la/inimage/getlayer?pid=cdjm91&did=112206&wid=0')  
+</script>
+            <div id="disqus_thread">
+                <div id="dsq-content">
+                    <ul class="nav" id="dsq-comments">
+                                        
+                        <li class="comment even thread-even depth-1" id="dsq-comment-1233072888">
+                            <div id="dsq-comment-header-1233072888" class="dsq-comment-header">
+                                <cite id="dsq-cite-1233072888">
+                                    <strong><span id="dsq-author-user-1233072888">Madhusudan Dad</span></strong> 
+                                    <span>Feb. 6, 2014, 2:25 a.m.</span>
+                                </cite>
+                            </div>
+                            <div id="dsq-comment-body-1233072888" class="dsq-comment-body">
+                                <div id="dsq-comment-message-1233072888" class="dsq-comment-message"><p><p>How to give input to web through python using beautifulsoup?</p></p>
+                                </div>
+                            </div>
+                        </li>
+                    
+                    </ul>
+                </div>
+            </div>
+<div style="font-size: small;"><i>Disclosure of Material Connection: Some of the links in the post above are “affiliate links.” This means if you click on the link and purchase the item, I will receive an affiliate commission. Regardless, PythonForBeginners.com only recommend products or services that we try personally and believe will add value to our readers.</i></div>
+        </div>
+        
+        
+<div class="col-md-5 col-lg-4">
+    <form role="form" id="search" method="get" action="/search/"> 
+      <div class="input-group">
+          <input type="text" placeholder="Search" id="q" name="q" class="form-control">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">SEARCH</button>
+          </span>               
+      </div>
+    </form>
+    <aside>
+<div style="padding: 8px 8px;"><script type='text/javascript'>
+<!--//<![CDATA[
+   document.MAX_ct0 ='';
+   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("zoneid=372633");document.write("&amp;nodis=1");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+   }
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   
+   document.write ("'></scr"+"ipt>");
+//]]>--></script>
+</div>
+
+  
+        <div class="categories">
+          <h3>Categories</h3>
+          <ul class="nav nav-pills nav-stacked">
+              <li><a href="/basics/">Basics</a></li>
+              <li><a href="/cheatsheet/">Cheatsheet</a></li>
+              <li><a href="/code-snippets-source-code/">Code snippets</a></li>
+              <li><a href="/development/">Development</a></li>
+              <li><a href="/dictionary/">Dictionary</a></li>
+              <li><a href="/error-handling/">Error Handling</a></li>
+              <li><a href="/lists/">Lists</a></li>
+              <li><a href="/loops/">Loops</a></li>
+              <li><a href="/modules-in-python/">Modules</a></li>
+              <li><a href="/python-strings/">Strings</a></li>
+              <li><a href="/systems-programming/">System &amp; OS</a></li>
+              <li><a href="/python-on-the-web/">Web &amp; Internet</a></li>
+          </ul>
+        </div>
+<div style="padding: 15px 0px 15px 0px;"><!-- BEGIN TAG - DO NOT MODIFY -->
+<script type="text/javascript">
+/*<![CDATA[*/
+supp_key = "31125a8bc65877b59806c2c0fc2177cf";
+supp_time = new Date().getTime();
+supp_channel = "";
+supp_code_format = "ads-sync.js";
+supp_click = "";
+supp_custom_params = {};
+
+/*]]>*/
+</script>
+<script type='text/javascript' src='//www.advertsby.com/js/show_ads_supp.js?pubId=79625'></script>
+<!-- END TAG --></div>
+
+      <div class="textwidget"><a class="twitter-timeline"
+  href="https://twitter.com/pythonbeginners" data-tweet-limit="3">
+Latest Tweets by @pythonbeginners
+</a></div>
+<!-- sovrn 300x250 -->
+<div style="padding: 15px 0px 15px 0px;"><!--Carambola Script --> 
+<img height='0' width='0' alt='' src='//pixel.watch/ocxi' style='display:block;' /> 
+<script data-cfasync="false" class="carambola_InContent" type="text/javascript" cbola_wid="2">  
+(function (i,d,s,o,m,r,c,l,w,q,y,h,g) {  
+var e=d.getElementById(r);if(e===null){  
+var t = d.createElement(o); t.src = g; t.id = r; t.setAttribute(m, s);t.async = 1;var n=d.getElementsByTagName(o)[0];n.parentNode.insertBefore(t, n); 
+var dt=new Date().getTime();  
+try{i[l][w+y](h,i[l][q+y](h)+'&'+dt);}catch(er){i[h]=dt;}  
+} else if(typeof i[c]!=='undefined'){i[c]++}  
+else{i[c]=1;}  
+})(window, document, 'InContent', 'script', 'mediaType', 'carambola_proxy','Cbola_IC','localStorage','set','get','Item','cbolaDt','//route.carambo.la/inimage/getlayer?pid=cdjm91&did=112206&wid=2')  
+</script>
+
+<!--<script type="text/javascript" src="//ap.lijit.com/www/delivery/fpi.js?z=333143&u=worldtimeserver&width=300&height=250"></script>--></div>
+    </aside>
+</div>
+    </div> 
+
+
+            <div class="push"></div>
+        </div>
+       
+
+
+<div class="container container-footer">
+    <div id="footer">
+          &copy; <a href="http://pythonforbeginners.com">Python For Beginners</a> 2012-2017  |  <a href="/privacy-policy/">Privacy Policy</a> | <a href="/write/">Write For Us</a>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  // tracker methods like "setCustomDimension" should be called before "trackPageView"
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//c9msvr1.com/pa/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '12']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->   
+</div>
+</div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=doxy"></script>
+
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1474940332733250";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        
+ <script type="text/javascript">
+/* <![CDATA[ */
+    var disqus_url = 'http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python';    
+    // var disqus_identifier = '4072 http://www.pythonforbeginners.com/?p=4072';
+    var disqus_container_id = 'disqus_thread';
+    var disqus_domain = 'disqus.com';
+    var disqus_shortname = 'pythonbeginners';
+    var disqus_title = "Beautiful Soup 4 Python";
+        var disqus_config = function () {
+        var config = this; // Access to the config object
+        config.language = '';
+
+        /*
+           All currently supported events:
+            * preData — fires just before we request for initial data
+            * preInit - fires after we get initial data but before we load any dependencies
+            * onInit  - fires when all dependencies are resolved but before dtpl template is rendered
+            * afterRender - fires when template is rendered but before we show it
+            * onReady - everything is done
+         */
+
+        config.callbacks.preData.push(function() {
+            // clear out the container (its filled for SEO/legacy purposes)
+            document.getElementById(disqus_container_id).innerHTML = '';
+        });
+                config.callbacks.onReady.push(function() {
+            // sync comments in the background so we don't block the page
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = '?cf_action=sync_comments&post_id=4072';
+
+            var firstScript = document.getElementsByTagName( "script" )[0];
+            firstScript.parentNode.insertBefore(script, firstScript);
+        });
+                    };
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.74';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+/* ]]> */
+</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+        <!-- GetSiteControl -->
+        <script>
+  (function (w,i,d,g,e,t,s) {w[d] = w[d]||[];t= i.createElement(g);
+    t.async=1;t.src=e;s=i.getElementsByTagName(g)[0];s.parentNode.insertBefore(t, s);
+  })(window, document, '_gscq','script','//widgets.getsitecontrol.com/56830/script.js');
+</script>
+    </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Beautiful Soup 4 Python</title>
+        <link rel="profile" href="http://gmpg.org/xfn/11" />
+        <link rel="canonical" href="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" />
+        <meta property="og:locale" content="en_US"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Beautiful Soup 4 Python"/>
+        <meta property="og:url" content="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python"/>
+        <meta property="og:site_name" content="Python For Beginners"/>
+        <link rel="alternate" type="application/rss+xml" title="Python For Beginners &raquo; Feed" href="http://www.pythonforbeginners.com/feed/" />
+        <meta name="description" lang="en-US" content=" Overview This article is an introduction to BeautifulSoup 4 in Python. If you want to know more I recommend you ... " />
+        <meta name="keywords" content="learn python, python 101, what is python, what is django, python tutorial" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="http://s.pythonforbeginners.com/static/img/favicon.ico" type="image/x-icon" />
+        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://s.pythonforbeginners.com/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://s.pythonforbeginners.com/static/css/bootstrap-theme-min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeDefault.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="http://s.pythonforbeginners.com/static/css/p4b.css" >
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64708426-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!--BEGIN FIRSTIMPRESSION TAG -->
+<script data-cfasync='false' type='text/javascript'>
+	window.apd_options = { 'websiteId': 5731, 'runFromFrame': false };
+	(function() {
+		var w = window.apd_options.runFromFrame ? window.top : window;
+		if(window.apd_options.runFromFrame && w!=window.parent) w=window.parent;
+		if (w.location.hash.indexOf('apdAdmin') != -1){if(typeof(Storage) !== 'undefined') {w.localStorage.apdAdmin = 1;}}
+		var adminMode = ((typeof(Storage) == 'undefined') || (w.localStorage.apdAdmin == 1));
+		w.apd_options=window.apd_options;
+		var apd = w.document.createElement('script'); apd.type = 'text/javascript'; apd.async = true;
+		apd.src = '//' + (adminMode ? 'cdn' : 'ecdn') + '.firstimpression.io/' + (adminMode ? 'apd.js?id=' + window.apd_options.websiteId : 'apd_client.js') ;
+		var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
+	})();</script>
+<!-- END FIRSTIMPRESSION TAG -->
+</head>
+    <body>
+        <div id="fb-root"></div>
+
+        <div id="wrapper">
+
+<div class="container navigation">  <div class="navbar navbar-inverse2">
+<script>
+function reloadMe() {
+	window.location.reload();
+}
+function getInterval(){
+	var lowerBound = 420;
+	var upperBound = 840;
+
+	var randNum = Math.floor((upperBound-lowerBound+1)*Math.random()+lowerBound) * 1000;
+	return randNum;
+}
+var interval = getInterval();
+var srcInterval = setInterval("reloadMe()",interval);
+</script>
+<div style="text-align: center;padding-top:5px;height: 100px;"><script type='text/javascript'>
+<!--//<![CDATA[
+   document.MAX_ct0 ='';
+   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("zoneid=372632");document.write("&amp;nodis=1");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+   }
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+
+   document.write ("'></scr"+"ipt>");
+//]]>--></script></div>
+     <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </button>
+        <a class="navbar-brand" href="/" title="pythonforbeginners.com">
+          <img src="http://s.pythonforbeginners.com/static/img/pfb_logo.png" alt="pythonforbeginners.com">
+        </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+
+          <li><a href="/" title="Home">Home</a></li>
+          <li><a href="/learn-python/" title="Learn Python">Learn Python</a></li>
+          <li><a href="/basics/" title="Basics">Basics</a></li>
+          <li><a href="/lists/" title="lists">Lists</a></li>
+          <li><a href="/dictionary/" title="dictionary">Dictionary</a></li>
+          <li><a href="/code-snippets-source-code/" title="code snippets">Code Snippets</a></li>
+          <li><a href="/modules-in-python/" title="modules">Modules</a></li>
+         </ul>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+<style>
+.container.content {
+	margin-top: 0px;
+	border:2px solid #ccc;
+	border-radius: 5px;
+}
+</style>
+
+
+
+
+
+
+<script type="text/javascript">
+
+	var disqus_shortname = 'pythonbeginners';
+	var disqus_identifier = "4072 http://www.pythonforbeginners.com/?p=4072";
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function () {
+		var s = document.createElement('script'); s.async = true;
+		s.type = 'text/javascript';
+		s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	}());
+</script>
+
+
+    <div class="container content">
+<div style="text-align: center;margin: 0 auto;width: 970px;">
+</div>
+
+        <div class="col-md-7 col-lg-8">
+<div class="breadcrumb"><a href="/">Home</a> >> Beautiful Soup 4 Python</div>
+
+
+            <div class="post-header">
+                Mar. 09, 2016
+                <ul class="nav nav-pills">
+
+                    <li><a href="/beautifulsoup/" title="BeautifulSoup"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;BeautifulSoup</a></li>
+
+                    <li><a href="/python-on-the-web/" title="Web &amp; Internet"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Web &amp; Internet</a></li>
+
+                </ul>
+            </div>
+            <h1>Beautiful Soup 4 Python</h1>
+
+<div align="left">
+
+</div>
+
+            <div class="post-bodycopy cf">
+                <h2>Overview</h2>
+<pre>
+This article is an introduction to BeautifulSoup 4 in Python.
+
+If you want to know more I recommend you to read the official documentation
+found <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/" title="b4soup_doc" target="_blank">here</a>.
+</pre>
+
+<h2>What is Beautiful Soup?</h2>
+<pre>
+Beautiful Soup is a Python library for pulling data out of HTML and XML files.
+</pre>
+
+<h2>BeautifulSoup 3 or 4?</h2>
+<pre>
+Beautiful Soup 3 has been replaced by Beautiful Soup 4.
+
+Beautiful Soup 3 only works on Python 2.x, but Beautiful Soup 4 also works on
+Python 3.x.
+
+Beautiful Soup 4 is faster, has more features, and works with third-party parsers
+like lxml and html5lib.
+
+You should use Beautiful Soup 4 for all new projects.
+</pre>
+
+<h2>Installing Beautiful Soup</h2>
+<pre>
+If you run Debian or Ubuntu, you can install Beautiful Soup with the system
+package manager
+</pre>
+<pre class="prettyprint">
+apt-get install python-bs4
+</pre>
+
+<pre>
+Beautiful Soup 4 is published through PyPi, so if you can’t install it with the
+system packager, you can install it with easy_install or pip.
+
+The package name is beautifulsoup4, and the same package works on Python 2 and
+Python 3.
+</pre>
+
+<pre class="prettyprint">
+easy_install beautifulsoup4
+
+pip install beautifulsoup4
+</pre>
+
+<pre>
+If you don’t have easy_install or pip installed, you can <a href="http://www.crummy.com/software/BeautifulSoup/bs4/download/4.0/" title="crummy_bs4" target="_blank">download</a> the Beautiful
+Soup 4 source tarball and install it with setup.py.
+
+python setup.py install
+</pre>
+
+<h2>BeautifulSoup Usage</h2>
+<pre>
+Right after the installation you can start using BeautifulSoup.
+
+At the beginning of your Python script, import the library
+
+Now you have to pass something to BeautifulSoup to create a soup object.
+
+That could be a document or an URL.
+
+BeautifulSoup does not fetch the web page for you, you have to do that yourself.
+
+That's why I use urllib2 in combination with the BeautifulSoup library.
+</pre>
+
+<h2>Filtering</h2>
+<pre>
+There are some different filters you can use with the search API.
+
+Below I will show you some examples on how you can pass those filters into
+methods such as find_all
+
+You can use these filters based on a tag’s name, on its attributes, on the text
+of a string, or on some combination of these.
+</pre>
+
+<h5>A string</h5>
+<pre>
+The simplest filter is a string.
+
+Pass a string to a search method and Beautiful Soup will perform a match against
+that exact string.
+
+This code finds all the 'b' tags in the document (you can replace b with any
+tag you want to find)
+</pre>
+
+<pre class="prettyprint">
+soup.find_all('b')
+</pre>
+
+<pre>
+If you pass in a byte string, Beautiful Soup will assume the string is encoded
+as UTF-8.
+
+You can avoid this by passing in a Unicode string instead.
+</pre>
+
+<h5>A regular expression</h5>
+<pre>
+If you pass in a regular expression object, Beautiful Soup will filter against
+that regular expression using its match() method.
+
+This code finds all the tags whose names start with the letter "b",
+in this case, the 'body' tag and the 'b' tag:
+</pre>
+
+<pre class="prettyprint">
+import re
+for tag in soup.find_all(re.compile("^b")):
+    print(tag.name)</strong>
+</pre>
+
+<pre>
+This code finds all the tags whose names contain the letter "t":
+</pre>
+
+<pre class="prettyprint">
+for tag in soup.find_all(re.compile("t")):
+    print(tag.name)
+</pre>
+
+<h5>A list</h5>
+<pre>
+If you pass in a list, Beautiful Soup will allow a string match against any
+item in that list.
+
+This code finds all the 'a' tags and all the 'b' tags
+</pre>
+
+<pre class="prettyprint">
+print soup.find_all(["a", "b"])
+</pre>
+
+<h5>True</h5>
+<pre>
+The value True matches everything it can.
+
+This code finds all the tags in the document, but none of the text strings:
+</pre>
+
+<pre class="prettyprint">
+for tag in soup.find_all(True):
+    print(tag.name)
+</pre>
+
+<h4>A function</h4>
+<pre>
+If none of the other matches work for you, define a function that takes an
+element as its only argument.
+
+Please see the official documentation if you want to do that.
+</pre>
+
+<h2>BeautifulSoup Object</h2>
+<pre>
+As an example, we'll use the very website you currently are on
+(http://www.pythonforbeginners.com)
+
+To parse the data from the content, we simply create a BeautifulSoup object for it
+
+That will create a soup object of the content of the url we passed in.
+
+From this point, we can now use the Beautiful Soup methods on that soup object.
+
+We can use the prettify method to turn a BS parse tree into a nicely formatted
+Unicode string
+</pre>
+
+<h5>The Find_all method</h5>
+<pre>
+The find_all method is one of the most common methods in BeautifulSoup.
+
+It looks through a tag’s descendants and retrieves all descendants that match
+your filters.
+</pre>
+
+<pre class="prettyprint">
+soup.find_all("title")
+
+soup.find_all("p", "title")
+
+soup.find_all("a")
+
+soup.find_all(id="link2")
+</pre>
+
+<pre>Let's see some examples on how to use BS 4</pre>
+
+<pre class="prettyprint">
+from bs4 import BeautifulSoup
+import urllib2
+
+url = "http://www.pythonforbeginners.com"
+
+content = urllib2.urlopen(url).read()
+
+soup = BeautifulSoup(content)
+
+print soup.prettify()
+
+print title
+>> 'title'? Python For Beginners</title>
+
+print soup.title.string
+>> ? Python For Beginners
+
+print soup.p
+ <p id="tagline"></p>
+
+print soup.a
+<a href="http://www.pythonforbeginners.com">Python For Beginners</a>
+</pre>
+
+<h2>Navigating the Parse Tree</h2>
+<pre>
+If you want to know how to navigate the tree please see the official <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree" title="navigation_bs4" target="_blank">documentation</a>
+
+There you can read about the following things:
+
+<strong>Going down</strong>
+        Navigating using tag names
+        .contents and .children
+        .descendants
+        .string
+        .strings and stripped_strings
+
+<strong>Going up</strong>
+        .parent
+        .parents
+
+<strong>Going sideways</strong>
+        .next_sibling and .previous_sibling
+        .next_siblings and .previous_siblings
+
+<strong>Going back and forth</strong>
+        .next_element and .previous_element
+        .next_elements and .previous_elements
+</pre>
+
+<h2>Extracting all the URLs found within a page 'a' tags</h2>
+<pre>
+One common task is extracting all the URLs found within a page’s 'a' tags
+
+Using the find_all method, gives us a whole list of elements with the tag "a".
+</pre>
+
+<pre class="prettyprint">
+for link in soup.find_all('a'):
+    print(link.get('href'))
+</pre>
+
+<pre>
+Output:
+</pre>
+
+<pre>
+..http://www.pythonforbeginners.com
+..http://www.pythonforbeginners.com/python-overview-start-here/
+..http://www.pythonforbeginners.com/dictionary/
+..http://www.pythonforbeginners.com/python-functions-cheat-sheet/
+..http://www.pythonforbeginners.com/lists/python-lists-cheat-sheet/
+..http://www.pythonforbeginners.com/loops/
+..http://www.pythonforbeginners.com/python-modules/
+..http://www.pythonforbeginners.com/strings/
+..http://www.pythonforbeginners.com/sitemap/
+...
+...
+</pre>
+
+<h2>Extracting all the text from a page</h2>
+<pre>
+Another common task is extracting all the text from a page:
+</pre>
+
+<pre class="prettyprint">
+print(soup.get_text())
+</pre>
+
+<pre>
+Output:
+</pre>
+
+<pre>
+Python For Beginners
+Python Basics
+Dictionary
+Functions
+Lists
+Loops
+Modules
+Strings
+Sitemap
+...
+...
+</pre>
+
+<h2>Get all links from Reddit</h2>
+<pre>
+As a last example, let's grab all the links from Reddit
+</pre>
+
+<pre class="prettyprint">
+
+from bs4 import BeautifulSoup
+import urllib2
+
+redditFile = urllib2.urlopen("http://www.reddit.com")
+redditHtml = redditFile.read()
+redditFile.close()
+
+soup = BeautifulSoup(redditHtml)
+redditAll = soup.find_all("a")
+for links in soup.find_all('a'):
+    print (links.get('href'))
+</pre>
+
+<pre>Output:
+</pre>
+
+<pre>
+#content
+..http://www.reddit.com/r/AdviceAnimals/
+..http://www.reddit.com/r/announcements/
+..http://www.reddit.com/r/AskReddit/
+..http://www.reddit.com/r/atheism/
+..http://www.reddit.com/r/aww/
+..http://www.reddit.com/r/bestof/
+..http://www.reddit.com/r/blog/
+..http://www.reddit.com/r/funny/
+..http://www.reddit.com/r/gaming/
+..http://www.reddit.com/r/IAmA/
+..http://www.reddit.com/r/movies/
+..http://www.reddit.com/r/Music/
+..http://www.reddit.com/r/pics/
+..http://www.reddit.com/r/politics/
+...
+</pre>
+
+<pre>
+For more information, please see the <a href="https://beautiful-soup-4.readthedocs.org/en/latest/" title="bs4" target="_blank">official</a> documentation.
+</pre>
+
+<section class="a">
+<h3>Recommended Python Training – <a href="https://www.datacamp.com/courses/tech:python?tap_a=5644-dce66f&tap_s=75426-9cf8ad">DataCamp</a></h3><p>
+For <a href="https://www.datacamp.com/courses/tech:python?tap_a=5644-dce66f&tap_s=75426-9cf8ad">Python training</a>, our top recommendation is DataCamp.
+</p><p>
+<a href="https://www.datacamp.com/courses/tech:python?tap_a=5644-dce66f&tap_s=75426-9cf8ad">Datacamp</a> provides online interactive courses that combine interactive coding challenges with videos from top instructors in the field.
+</p><p>
+Datacamp has beginner to advanced Python training that programmers of all levels benefit from.
+</p>
+</section>
+<p>&nbsp;</p>
+<div align="center">
+	<!-- BEGIN TAG - DO NOT MODIFY -->
+<script type="text/javascript">
+/*<![CDATA[*/
+supp_key = "a48c928d31af79d0fde04fccbf45c5f3";
+supp_channel = "";
+supp_code_format = "ads";
+supp_click = "";
+supp_custom_params = {};
+supp_width = "640";
+supp_height = "480";
+
+/*]]>*/
+</script>
+<script type='text/javascript' src='//www.advertsby.com/js/show_ads_supp.js?pubId=80478'></script>
+<!-- END TAG -->
+</div>
+                <div>
+                    <a href="https://twitter.com/share?url=http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" class="twitter-share-button" data-via="pythonbeginners" data-size="large">Tweet</a>
+                    <div class="g-plusone" data-href="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" data-size="standard" data-annotation="bubble"></div>
+                    <div class="fb-like" data-href="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                </div><br/><br/>
+
+                Read more about:
+                <ul class="nav nav-pills">
+
+                <li><a href="/beautifulsoup/" title="BeautifulSoup"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;BeautifulSoup</a></li>
+
+                <li><a href="/python-on-the-web/" title="Web &amp; Internet"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Web &amp; Internet</a></li>
+
+                </ul>
+            </div>
+        <!--Carambola Script -->
+<img height='0' width='0' alt='' src='//pixel.watch/6ot8' />
+<script data-cfasync="false" class="carambola_InContent" type="text/javascript" cbola_wid="0">
+(function (i,d,s,o,m,r,c,l,w,q,y,h,g) {
+var e=d.getElementById(r);if(e===null){
+var t = d.createElement(o); t.src = g; t.id = r; t.setAttribute(m, s);t.async = 1;var n=d.getElementsByTagName(o)[0];n.parentNode.insertBefore(t, n);
+var dt=new Date().getTime();
+try{i[l][w+y](h,i[l][q+y](h)+'&'+dt);}catch(er){i[h]=dt;}
+} else if(typeof i[c]!=='undefined'){i[c]++}
+else{i[c]=1;}
+})(window, document, 'InContent', 'script', 'mediaType', 'carambola_proxy','Cbola_IC','localStorage','set','get','Item','cbolaDt','//route.carambo.la/inimage/getlayer?pid=cdjm91&did=112206&wid=0')
+</script>
+            <div id="disqus_thread">
+                <div id="dsq-content">
+                    <ul class="nav" id="dsq-comments">
+
+                        <li class="comment even thread-even depth-1" id="dsq-comment-1233072888">
+                            <div id="dsq-comment-header-1233072888" class="dsq-comment-header">
+                                <cite id="dsq-cite-1233072888">
+                                    <strong><span id="dsq-author-user-1233072888">Madhusudan Dad</span></strong>
+                                    <span>Feb. 6, 2014, 2:25 a.m.</span>
+                                </cite>
+                            </div>
+                            <div id="dsq-comment-body-1233072888" class="dsq-comment-body">
+                                <div id="dsq-comment-message-1233072888" class="dsq-comment-message"><p><p>How to give input to web through python using beautifulsoup?</p></p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+<div style="font-size: small;"><i>Disclosure of Material Connection: Some of the links in the post above are “affiliate links.” This means if you click on the link and purchase the item, I will receive an affiliate commission. Regardless, PythonForBeginners.com only recommend products or services that we try personally and believe will add value to our readers.</i></div>
+        </div>
+
+
+<div class="col-md-5 col-lg-4">
+    <form role="form" id="search" method="get" action="/search/">
+      <div class="input-group">
+          <input type="text" placeholder="Search" id="q" name="q" class="form-control">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">SEARCH</button>
+          </span>
+      </div>
+    </form>
+    <aside>
+<div style="padding: 8px 8px;"><script type='text/javascript'>
+<!--//<![CDATA[
+   document.MAX_ct0 ='';
+   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("zoneid=372633");document.write("&amp;nodis=1");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+   }
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+
+   document.write ("'></scr"+"ipt>");
+//]]>--></script>
+</div>
+
+
+        <div class="categories">
+          <h3>Categories</h3>
+          <ul class="nav nav-pills nav-stacked">
+              <li><a href="/basics/">Basics</a></li>
+              <li><a href="/cheatsheet/">Cheatsheet</a></li>
+              <li><a href="/code-snippets-source-code/">Code snippets</a></li>
+              <li><a href="/development/">Development</a></li>
+              <li><a href="/dictionary/">Dictionary</a></li>
+              <li><a href="/error-handling/">Error Handling</a></li>
+              <li><a href="/lists/">Lists</a></li>
+              <li><a href="/loops/">Loops</a></li>
+              <li><a href="/modules-in-python/">Modules</a></li>
+              <li><a href="/python-strings/">Strings</a></li>
+              <li><a href="/systems-programming/">System &amp; OS</a></li>
+              <li><a href="/python-on-the-web/">Web &amp; Internet</a></li>
+          </ul>
+        </div>
+<div style="padding: 15px 0px 15px 0px;"><!-- BEGIN TAG - DO NOT MODIFY -->
+<script type="text/javascript">
+/*<![CDATA[*/
+supp_key = "31125a8bc65877b59806c2c0fc2177cf";
+supp_time = new Date().getTime();
+supp_channel = "";
+supp_code_format = "ads-sync.js";
+supp_click = "";
+supp_custom_params = {};
+
+/*]]>*/
+</script>
+<script type='text/javascript' src='//www.advertsby.com/js/show_ads_supp.js?pubId=79625'></script>
+<!-- END TAG --></div>
+
+      <div class="textwidget"><a class="twitter-timeline"
+  href="https://twitter.com/pythonbeginners" data-tweet-limit="3">
+Latest Tweets by @pythonbeginners
+</a></div>
+<!-- sovrn 300x250 -->
+<div style="padding: 15px 0px 15px 0px;"><!--Carambola Script -->
+<img height='0' width='0' alt='' src='//pixel.watch/ocxi' style='display:block;' />
+<script data-cfasync="false" class="carambola_InContent" type="text/javascript" cbola_wid="2">
+(function (i,d,s,o,m,r,c,l,w,q,y,h,g) {
+var e=d.getElementById(r);if(e===null){
+var t = d.createElement(o); t.src = g; t.id = r; t.setAttribute(m, s);t.async = 1;var n=d.getElementsByTagName(o)[0];n.parentNode.insertBefore(t, n);
+var dt=new Date().getTime();
+try{i[l][w+y](h,i[l][q+y](h)+'&'+dt);}catch(er){i[h]=dt;}
+} else if(typeof i[c]!=='undefined'){i[c]++}
+else{i[c]=1;}
+})(window, document, 'InContent', 'script', 'mediaType', 'carambola_proxy','Cbola_IC','localStorage','set','get','Item','cbolaDt','//route.carambo.la/inimage/getlayer?pid=cdjm91&did=112206&wid=2')
+</script>
+
+<!--<script type="text/javascript" src="//ap.lijit.com/www/delivery/fpi.js?z=333143&u=worldtimeserver&width=300&height=250"></script>--></div>
+    </aside>
+</div>
+    </div>
+
+
+            <div class="push"></div>
+        </div>
+
+
+
+<div class="container container-footer">
+    <div id="footer">
+          &copy; <a href="http://pythonforbeginners.com">Python For Beginners</a> 2012-2017  |  <a href="/privacy-policy/">Privacy Policy</a> | <a href="/write/">Write For Us</a>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  // tracker methods like "setCustomDimension" should be called before "trackPageView"
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//c9msvr1.com/pa/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '12']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+</div>
+</div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=doxy"></script>
+
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1474940332733250";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+ <script type="text/javascript">
+/* <![CDATA[ */
+    var disqus_url = 'http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python';
+    // var disqus_identifier = '4072 http://www.pythonforbeginners.com/?p=4072';
+    var disqus_container_id = 'disqus_thread';
+    var disqus_domain = 'disqus.com';
+    var disqus_shortname = 'pythonbeginners';
+    var disqus_title = "Beautiful Soup 4 Python";
+        var disqus_config = function () {
+        var config = this; // Access to the config object
+        config.language = '';
+
+        /*
+           All currently supported events:
+            * preData — fires just before we request for initial data
+            * preInit - fires after we get initial data but before we load any dependencies
+            * onInit  - fires when all dependencies are resolved but before dtpl template is rendered
+            * afterRender - fires when template is rendered but before we show it
+            * onReady - everything is done
+         */
+
+        config.callbacks.preData.push(function() {
+            // clear out the container (its filled for SEO/legacy purposes)
+            document.getElementById(disqus_container_id).innerHTML = '';
+        });
+                config.callbacks.onReady.push(function() {
+            // sync comments in the background so we don't block the page
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = '?cf_action=sync_comments&post_id=4072';
+
+            var firstScript = document.getElementsByTagName( "script" )[0];
+            firstScript.parentNode.insertBefore(script, firstScript);
+        });
+                    };
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.74';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+/* ]]> */
+</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+        <!-- GetSiteControl -->
+        <script>
+  (function (w,i,d,g,e,t,s) {w[d] = w[d]||[];t= i.createElement(g);
+    t.async=1;t.src=e;s=i.getElementsByTagName(g)[0];s.parentNode.insertBefore(t, s);
+  })(window, document, '_gscq','script','//widgets.getsitecontrol.com/56830/script.js');
+</script>
+    </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Beautiful Soup 4 Python</title>
+        <link rel="profile" href="http://gmpg.org/xfn/11" />
+        <link rel="canonical" href="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" />
+        <meta property="og:locale" content="en_US"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Beautiful Soup 4 Python"/>
+        <meta property="og:url" content="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python"/>
+        <meta property="og:site_name" content="Python For Beginners"/>
+        <link rel="alternate" type="application/rss+xml" title="Python For Beginners &raquo; Feed" href="http://www.pythonforbeginners.com/feed/" />
+        <meta name="description" lang="en-US" content=" Overview This article is an introduction to BeautifulSoup 4 in Python. If you want to know more I recommend you ... " />
+        <meta name="keywords" content="learn python, python 101, what is python, what is django, python tutorial" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="http://s.pythonforbeginners.com/static/img/favicon.ico" type="image/x-icon" />
+        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://s.pythonforbeginners.com/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://s.pythonforbeginners.com/static/css/bootstrap-theme-min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeDefault.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="http://s.pythonforbeginners.com/static/css/p4b.css" >
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64708426-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!--BEGIN FIRSTIMPRESSION TAG -->
+<script data-cfasync='false' type='text/javascript'>
+	window.apd_options = { 'websiteId': 5731, 'runFromFrame': false };
+	(function() {
+		var w = window.apd_options.runFromFrame ? window.top : window;
+		if(window.apd_options.runFromFrame && w!=window.parent) w=window.parent;
+		if (w.location.hash.indexOf('apdAdmin') != -1){if(typeof(Storage) !== 'undefined') {w.localStorage.apdAdmin = 1;}}
+		var adminMode = ((typeof(Storage) == 'undefined') || (w.localStorage.apdAdmin == 1));
+		w.apd_options=window.apd_options;
+		var apd = w.document.createElement('script'); apd.type = 'text/javascript'; apd.async = true;
+		apd.src = '//' + (adminMode ? 'cdn' : 'ecdn') + '.firstimpression.io/' + (adminMode ? 'apd.js?id=' + window.apd_options.websiteId : 'apd_client.js') ;
+		var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
+	})();</script>
+<!-- END FIRSTIMPRESSION TAG -->
+</head>
+    <body>
+        <div id="fb-root"></div>
+
+        <div id="wrapper">
+
+<div class="container navigation">  <div class="navbar navbar-inverse2">
+<script>
+function reloadMe() {
+	window.location.reload();
+}
+function getInterval(){
+	var lowerBound = 420;
+	var upperBound = 840;
+
+	var randNum = Math.floor((upperBound-lowerBound+1)*Math.random()+lowerBound) * 1000;
+	return randNum;
+}
+var interval = getInterval();
+var srcInterval = setInterval("reloadMe()",interval);
+</script>
+<div style="text-align: center;padding-top:5px;height: 100px;"><script type='text/javascript'>
+<!--//<![CDATA[
+   document.MAX_ct0 ='';
+   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("zoneid=372632");document.write("&amp;nodis=1");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+   }
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+
+   document.write ("'></scr"+"ipt>");
+//]]>--></script></div>
+     <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </button>
+        <a class="navbar-brand" href="/" title="pythonforbeginners.com">
+          <img src="http://s.pythonforbeginners.com/static/img/pfb_logo.png" alt="pythonforbeginners.com">
+        </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+
+          <li><a href="/" title="Home">Home</a></li>
+          <li><a href="/learn-python/" title="Learn Python">Learn Python</a></li>
+          <li><a href="/basics/" title="Basics">Basics</a></li>
+          <li><a href="/lists/" title="lists">Lists</a></li>
+          <li><a href="/dictionary/" title="dictionary">Dictionary</a></li>
+          <li><a href="/code-snippets-source-code/" title="code snippets">Code Snippets</a></li>
+          <li><a href="/modules-in-python/" title="modules">Modules</a></li>
+         </ul>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+<style>
+.container.content {
+	margin-top: 0px;
+	border:2px solid #ccc;
+	border-radius: 5px;
+}
+</style>
+
+
+
+
+
+
+<script type="text/javascript">
+
+	var disqus_shortname = 'pythonbeginners';
+	var disqus_identifier = "4072 http://www.pythonforbeginners.com/?p=4072";
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function () {
+		var s = document.createElement('script'); s.async = true;
+		s.type = 'text/javascript';
+		s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	}());
+</script>
+
+
+    <div class="container content">
+<div style="text-align: center;margin: 0 auto;width: 970px;">
+</div>
+
+        <div class="col-md-7 col-lg-8">
+<div class="breadcrumb"><a href="/">Home</a> >> Beautiful Soup 4 Python</div>
+
+
+            <div class="post-header">
+                Mar. 09, 2016
+                <ul class="nav nav-pills">
+
+                    <li><a href="/beautifulsoup/" title="BeautifulSoup"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;BeautifulSoup</a></li>
+
+                    <li><a href="/python-on-the-web/" title="Web &amp; Internet"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Web &amp; Internet</a></li>
+
+                </ul>
+            </div>
+            <h1>Beautiful Soup 4 Python</h1>
+
+<div align="left">
+
+</div>
+
+            <div class="post-bodycopy cf">
+                <h2>Overview</h2>
+<pre>
+This article is an introduction to BeautifulSoup 4 in Python.
+
+If you want to know more I recommend you to read the official documentation
+found <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/" title="b4soup_doc" target="_blank">here</a>.
+</pre>
+
+<h2>What is Beautiful Soup?</h2>
+<pre>
+Beautiful Soup is a Python library for pulling data out of HTML and XML files.
+</pre>
+
+<h2>BeautifulSoup 3 or 4?</h2>
+<pre>
+Beautiful Soup 3 has been replaced by Beautiful Soup 4.
+
+Beautiful Soup 3 only works on Python 2.x, but Beautiful Soup 4 also works on
+Python 3.x.
+
+Beautiful Soup 4 is faster, has more features, and works with third-party parsers
+like lxml and html5lib.
+
+You should use Beautiful Soup 4 for all new projects.
+</pre>
+
+<h2>Installing Beautiful Soup</h2>
+<pre>
+If you run Debian or Ubuntu, you can install Beautiful Soup with the system
+package manager
+</pre>
+<pre class="prettyprint">
+apt-get install python-bs4
+</pre>
+
+<pre>
+Beautiful Soup 4 is published through PyPi, so if you can’t install it with the
+system packager, you can install it with easy_install or pip.
+
+The package name is beautifulsoup4, and the same package works on Python 2 and
+Python 3.
+</pre>
+
+<pre class="prettyprint">
+easy_install beautifulsoup4
+
+pip install beautifulsoup4
+</pre>
+
+<pre>
+If you don’t have easy_install or pip installed, you can <a href="http://www.crummy.com/software/BeautifulSoup/bs4/download/4.0/" title="crummy_bs4" target="_blank">download</a> the Beautiful
+Soup 4 source tarball and install it with setup.py.
+
+python setup.py install
+</pre>
+
+<h2>BeautifulSoup Usage</h2>
+<pre>
+Right after the installation you can start using BeautifulSoup.
+
+At the beginning of your Python script, import the library
+
+Now you have to pass something to BeautifulSoup to create a soup object.
+
+That could be a document or an URL.
+
+BeautifulSoup does not fetch the web page for you, you have to do that yourself.
+
+That's why I use urllib2 in combination with the BeautifulSoup library.
+</pre>
+
+<h2>Filtering</h2>
+<pre>
+There are some different filters you can use with the search API.
+
+Below I will show you some examples on how you can pass those filters into
+methods such as find_all
+
+You can use these filters based on a tag’s name, on its attributes, on the text
+of a string, or on some combination of these.
+</pre>
+
+<h5>A string</h5>
+<pre>
+The simplest filter is a string.
+
+Pass a string to a search method and Beautiful Soup will perform a match against
+that exact string.
+
+This code finds all the 'b' tags in the document (you can replace b with any
+tag you want to find)
+</pre>
+
+<pre class="prettyprint">
+soup.find_all('b')
+</pre>
+
+<pre>
+If you pass in a byte string, Beautiful Soup will assume the string is encoded
+as UTF-8.
+
+You can avoid this by passing in a Unicode string instead.
+</pre>
+
+<h5>A regular expression</h5>
+<pre>
+If you pass in a regular expression object, Beautiful Soup will filter against
+that regular expression using its match() method.
+
+This code finds all the tags whose names start with the letter "b",
+in this case, the 'body' tag and the 'b' tag:
+</pre>
+
+<pre class="prettyprint">
+import re
+for tag in soup.find_all(re.compile("^b")):
+    print(tag.name)</strong>
+</pre>
+
+<pre>
+This code finds all the tags whose names contain the letter "t":
+</pre>
+
+<pre class="prettyprint">
+for tag in soup.find_all(re.compile("t")):
+    print(tag.name)
+</pre>
+
+<h5>A list</h5>
+<pre>
+If you pass in a list, Beautiful Soup will allow a string match against any
+item in that list.
+
+This code finds all the 'a' tags and all the 'b' tags
+</pre>
+
+<pre class="prettyprint">
+print soup.find_all(["a", "b"])
+</pre>
+
+<h5>True</h5>
+<pre>
+The value True matches everything it can.
+
+This code finds all the tags in the document, but none of the text strings:
+</pre>
+
+<pre class="prettyprint">
+for tag in soup.find_all(True):
+    print(tag.name)
+</pre>
+
+<h4>A function</h4>
+<pre>
+If none of the other matches work for you, define a function that takes an
+element as its only argument.
+
+Please see the official documentation if you want to do that.
+</pre>
+
+<h2>BeautifulSoup Object</h2>
+<pre>
+As an example, we'll use the very website you currently are on
+(http://www.pythonforbeginners.com)
+
+To parse the data from the content, we simply create a BeautifulSoup object for it
+
+That will create a soup object of the content of the url we passed in.
+
+From this point, we can now use the Beautiful Soup methods on that soup object.
+
+We can use the prettify method to turn a BS parse tree into a nicely formatted
+Unicode string
+</pre>
+
+<h5>The Find_all method</h5>
+<pre>
+The find_all method is one of the most common methods in BeautifulSoup.
+
+It looks through a tag’s descendants and retrieves all descendants that match
+your filters.
+</pre>
+
+<pre class="prettyprint">
+soup.find_all("title")
+
+soup.find_all("p", "title")
+
+soup.find_all("a")
+
+soup.find_all(id="link2")
+</pre>
+
+<pre>Let's see some examples on how to use BS 4</pre>
+
+<pre class="prettyprint">
+from bs4 import BeautifulSoup
+import urllib2
+
+url = "http://www.pythonforbeginners.com"
+
+content = urllib2.urlopen(url).read()
+
+soup = BeautifulSoup(content)
+
+print soup.prettify()
+
+print title
+>> 'title'? Python For Beginners</title>
+
+print soup.title.string
+>> ? Python For Beginners
+
+print soup.p
+ <p id="tagline"></p>
+
+print soup.a
+<a href="http://www.pythonforbeginners.com">Python For Beginners</a>
+</pre>
+
+<h2>Navigating the Parse Tree</h2>
+<pre>
+If you want to know how to navigate the tree please see the official <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree" title="navigation_bs4" target="_blank">documentation</a>
+
+There you can read about the following things:
+
+<strong>Going down</strong>
+        Navigating using tag names
+        .contents and .children
+        .descendants
+        .string
+        .strings and stripped_strings
+
+<strong>Going up</strong>
+        .parent
+        .parents
+
+<strong>Going sideways</strong>
+        .next_sibling and .previous_sibling
+        .next_siblings and .previous_siblings
+
+<strong>Going back and forth</strong>
+        .next_element and .previous_element
+        .next_elements and .previous_elements
+</pre>
+
+<h2>Extracting all the URLs found within a page 'a' tags</h2>
+<pre>
+One common task is extracting all the URLs found within a page’s 'a' tags
+
+Using the find_all method, gives us a whole list of elements with the tag "a".
+</pre>
+
+<pre class="prettyprint">
+for link in soup.find_all('a'):
+    print(link.get('href'))
+</pre>
+
+<pre>
+Output:
+</pre>
+
+<pre>
+..http://www.pythonforbeginners.com
+..http://www.pythonforbeginners.com/python-overview-start-here/
+..http://www.pythonforbeginners.com/dictionary/
+..http://www.pythonforbeginners.com/python-functions-cheat-sheet/
+..http://www.pythonforbeginners.com/lists/python-lists-cheat-sheet/
+..http://www.pythonforbeginners.com/loops/
+..http://www.pythonforbeginners.com/python-modules/
+..http://www.pythonforbeginners.com/strings/
+..http://www.pythonforbeginners.com/sitemap/
+...
+...
+</pre>
+
+<h2>Extracting all the text from a page</h2>
+<pre>
+Another common task is extracting all the text from a page:
+</pre>
+
+<pre class="prettyprint">
+print(soup.get_text())
+</pre>
+
+<pre>
+Output:
+</pre>
+
+<pre>
+Python For Beginners
+Python Basics
+Dictionary
+Functions
+Lists
+Loops
+Modules
+Strings
+Sitemap
+...
+...
+</pre>
+
+<h2>Get all links from Reddit</h2>
+<pre>
+As a last example, let's grab all the links from Reddit
+</pre>
+
+<pre class="prettyprint">
+
+from bs4 import BeautifulSoup
+import urllib2
+
+redditFile = urllib2.urlopen("http://www.reddit.com")
+redditHtml = redditFile.read()
+redditFile.close()
+
+soup = BeautifulSoup(redditHtml)
+redditAll = soup.find_all("a")
+for links in soup.find_all('a'):
+    print (links.get('href'))
+</pre>
+
+<pre>Output:
+</pre>
+
+<pre>
+#content
+..http://www.reddit.com/r/AdviceAnimals/
+..http://www.reddit.com/r/announcements/
+..http://www.reddit.com/r/AskReddit/
+..http://www.reddit.com/r/atheism/
+..http://www.reddit.com/r/aww/
+..http://www.reddit.com/r/bestof/
+..http://www.reddit.com/r/blog/
+..http://www.reddit.com/r/funny/
+..http://www.reddit.com/r/gaming/
+..http://www.reddit.com/r/IAmA/
+..http://www.reddit.com/r/movies/
+..http://www.reddit.com/r/Music/
+..http://www.reddit.com/r/pics/
+..http://www.reddit.com/r/politics/
+...
+</pre>
+
+<pre>
+For more information, please see the <a href="https://beautiful-soup-4.readthedocs.org/en/latest/" title="bs4" target="_blank">official</a> documentation.
+</pre>
+
+<section class="a">
+<h3>Recommended Python Training – <a href="https://www.datacamp.com/courses/tech:python?tap_a=5644-dce66f&tap_s=75426-9cf8ad">DataCamp</a></h3><p>
+For <a href="https://www.datacamp.com/courses/tech:python?tap_a=5644-dce66f&tap_s=75426-9cf8ad">Python training</a>, our top recommendation is DataCamp.
+</p><p>
+<a href="https://www.datacamp.com/courses/tech:python?tap_a=5644-dce66f&tap_s=75426-9cf8ad">Datacamp</a> provides online interactive courses that combine interactive coding challenges with videos from top instructors in the field.
+</p><p>
+Datacamp has beginner to advanced Python training that programmers of all levels benefit from.
+</p>
+</section>
+<p>&nbsp;</p>
+<div align="center">
+	<!-- BEGIN TAG - DO NOT MODIFY -->
+<script type="text/javascript">
+/*<![CDATA[*/
+supp_key = "a48c928d31af79d0fde04fccbf45c5f3";
+supp_channel = "";
+supp_code_format = "ads";
+supp_click = "";
+supp_custom_params = {};
+supp_width = "640";
+supp_height = "480";
+
+/*]]>*/
+</script>
+<script type='text/javascript' src='//www.advertsby.com/js/show_ads_supp.js?pubId=80478'></script>
+<!-- END TAG -->
+</div>
+                <div>
+                    <a href="https://twitter.com/share?url=http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" class="twitter-share-button" data-via="pythonbeginners" data-size="large">Tweet</a>
+                    <div class="g-plusone" data-href="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" data-size="standard" data-annotation="bubble"></div>
+                    <div class="fb-like" data-href="http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                </div><br/><br/>
+
+                Read more about:
+                <ul class="nav nav-pills">
+
+                <li><a href="/beautifulsoup/" title="BeautifulSoup"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;BeautifulSoup</a></li>
+
+                <li><a href="/python-on-the-web/" title="Web &amp; Internet"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Web &amp; Internet</a></li>
+
+                </ul>
+            </div>
+        <!--Carambola Script -->
+<img height='0' width='0' alt='' src='//pixel.watch/6ot8' />
+<script data-cfasync="false" class="carambola_InContent" type="text/javascript" cbola_wid="0">
+(function (i,d,s,o,m,r,c,l,w,q,y,h,g) {
+var e=d.getElementById(r);if(e===null){
+var t = d.createElement(o); t.src = g; t.id = r; t.setAttribute(m, s);t.async = 1;var n=d.getElementsByTagName(o)[0];n.parentNode.insertBefore(t, n);
+var dt=new Date().getTime();
+try{i[l][w+y](h,i[l][q+y](h)+'&'+dt);}catch(er){i[h]=dt;}
+} else if(typeof i[c]!=='undefined'){i[c]++}
+else{i[c]=1;}
+})(window, document, 'InContent', 'script', 'mediaType', 'carambola_proxy','Cbola_IC','localStorage','set','get','Item','cbolaDt','//route.carambo.la/inimage/getlayer?pid=cdjm91&did=112206&wid=0')
+</script>
+            <div id="disqus_thread">
+                <div id="dsq-content">
+                    <ul class="nav" id="dsq-comments">
+
+                        <li class="comment even thread-even depth-1" id="dsq-comment-1233072888">
+                            <div id="dsq-comment-header-1233072888" class="dsq-comment-header">
+                                <cite id="dsq-cite-1233072888">
+                                    <strong><span id="dsq-author-user-1233072888">Madhusudan Dad</span></strong>
+                                    <span>Feb. 6, 2014, 2:25 a.m.</span>
+                                </cite>
+                            </div>
+                            <div id="dsq-comment-body-1233072888" class="dsq-comment-body">
+                                <div id="dsq-comment-message-1233072888" class="dsq-comment-message"><p><p>How to give input to web through python using beautifulsoup?</p></p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+<div style="font-size: small;"><i>Disclosure of Material Connection: Some of the links in the post above are “affiliate links.” This means if you click on the link and purchase the item, I will receive an affiliate commission. Regardless, PythonForBeginners.com only recommend products or services that we try personally and believe will add value to our readers.</i></div>
+        </div>
+
+
+<div class="col-md-5 col-lg-4">
+    <form role="form" id="search" method="get" action="/search/">
+      <div class="input-group">
+          <input type="text" placeholder="Search" id="q" name="q" class="form-control">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">SEARCH</button>
+          </span>
+      </div>
+    </form>
+    <aside>
+<div style="padding: 8px 8px;"><script type='text/javascript'>
+<!--//<![CDATA[
+   document.MAX_ct0 ='';
+   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("zoneid=372633");document.write("&amp;nodis=1");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+   }
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+
+   document.write ("'></scr"+"ipt>");
+//]]>--></script>
+</div>
+
+
+        <div class="categories">
+          <h3>Categories</h3>
+          <ul class="nav nav-pills nav-stacked">
+              <li><a href="/basics/">Basics</a></li>
+              <li><a href="/cheatsheet/">Cheatsheet</a></li>
+              <li><a href="/code-snippets-source-code/">Code snippets</a></li>
+              <li><a href="/development/">Development</a></li>
+              <li><a href="/dictionary/">Dictionary</a></li>
+              <li><a href="/error-handling/">Error Handling</a></li>
+              <li><a href="/lists/">Lists</a></li>
+              <li><a href="/loops/">Loops</a></li>
+              <li><a href="/modules-in-python/">Modules</a></li>
+              <li><a href="/python-strings/">Strings</a></li>
+              <li><a href="/systems-programming/">System &amp; OS</a></li>
+              <li><a href="/python-on-the-web/">Web &amp; Internet</a></li>
+          </ul>
+        </div>
+<div style="padding: 15px 0px 15px 0px;"><!-- BEGIN TAG - DO NOT MODIFY -->
+<script type="text/javascript">
+/*<![CDATA[*/
+supp_key = "31125a8bc65877b59806c2c0fc2177cf";
+supp_time = new Date().getTime();
+supp_channel = "";
+supp_code_format = "ads-sync.js";
+supp_click = "";
+supp_custom_params = {};
+
+/*]]>*/
+</script>
+<script type='text/javascript' src='//www.advertsby.com/js/show_ads_supp.js?pubId=79625'></script>
+<!-- END TAG --></div>
+
+      <div class="textwidget"><a class="twitter-timeline"
+  href="https://twitter.com/pythonbeginners" data-tweet-limit="3">
+Latest Tweets by @pythonbeginners
+</a></div>
+<!-- sovrn 300x250 -->
+<div style="padding: 15px 0px 15px 0px;"><!--Carambola Script -->
+<img height='0' width='0' alt='' src='//pixel.watch/ocxi' style='display:block;' />
+<script data-cfasync="false" class="carambola_InContent" type="text/javascript" cbola_wid="2">
+(function (i,d,s,o,m,r,c,l,w,q,y,h,g) {
+var e=d.getElementById(r);if(e===null){
+var t = d.createElement(o); t.src = g; t.id = r; t.setAttribute(m, s);t.async = 1;var n=d.getElementsByTagName(o)[0];n.parentNode.insertBefore(t, n);
+var dt=new Date().getTime();
+try{i[l][w+y](h,i[l][q+y](h)+'&'+dt);}catch(er){i[h]=dt;}
+} else if(typeof i[c]!=='undefined'){i[c]++}
+else{i[c]=1;}
+})(window, document, 'InContent', 'script', 'mediaType', 'carambola_proxy','Cbola_IC','localStorage','set','get','Item','cbolaDt','//route.carambo.la/inimage/getlayer?pid=cdjm91&did=112206&wid=2')
+</script>
+
+<!--<script type="text/javascript" src="//ap.lijit.com/www/delivery/fpi.js?z=333143&u=worldtimeserver&width=300&height=250"></script>--></div>
+    </aside>
+</div>
+    </div>
+
+
+            <div class="push"></div>
+        </div>
+
+
+
+<div class="container container-footer">
+    <div id="footer">
+          &copy; <a href="http://pythonforbeginners.com">Python For Beginners</a> 2012-2017  |  <a href="/privacy-policy/">Privacy Policy</a> | <a href="/write/">Write For Us</a>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  // tracker methods like "setCustomDimension" should be called before "trackPageView"
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//c9msvr1.com/pa/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '12']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+</div>
+</div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=doxy"></script>
+
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1474940332733250";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+ <script type="text/javascript">
+/* <![CDATA[ */
+    var disqus_url = 'http://www.pythonforbeginners.com/beautifulsoup/beautifulsoup-4-python';
+    // var disqus_identifier = '4072 http://www.pythonforbeginners.com/?p=4072';
+    var disqus_container_id = 'disqus_thread';
+    var disqus_domain = 'disqus.com';
+    var disqus_shortname = 'pythonbeginners';
+    var disqus_title = "Beautiful Soup 4 Python";
+        var disqus_config = function () {
+        var config = this; // Access to the config object
+        config.language = '';
+
+        /*
+           All currently supported events:
+            * preData — fires just before we request for initial data
+            * preInit - fires after we get initial data but before we load any dependencies
+            * onInit  - fires when all dependencies are resolved but before dtpl template is rendered
+            * afterRender - fires when template is rendered but before we show it
+            * onReady - everything is done
+         */
+
+        config.callbacks.preData.push(function() {
+            // clear out the container (its filled for SEO/legacy purposes)
+            document.getElementById(disqus_container_id).innerHTML = '';
+        });
+                config.callbacks.onReady.push(function() {
+            // sync comments in the background so we don't block the page
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = '?cf_action=sync_comments&post_id=4072';
+
+            var firstScript = document.getElementsByTagName( "script" )[0];
+            firstScript.parentNode.insertBefore(script, firstScript);
+        });
+                    };
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.74';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+/* ]]> */
+</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+        <!-- GetSiteControl -->
+        <script>
+  (function (w,i,d,g,e,t,s) {w[d] = w[d]||[];t= i.createElement(g);
+    t.async=1;t.src=e;s=i.getElementsByTagName(g)[0];s.parentNode.insertBefore(t, s);
+  })(window, document, '_gscq','script','//widgets.getsitecontrol.com/56830/script.js');
+</script>
+    </body>
+</html>
